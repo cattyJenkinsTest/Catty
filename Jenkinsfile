@@ -32,7 +32,7 @@ pipeline {
   
   post {
     always {
-      junit 'src/fastlane/test_output/report.junit', allowEmptyResults: true
+      junit testResults: 'src/fastlane/test_output/report.junit', allowEmptyResults: true
     }
   }
 }

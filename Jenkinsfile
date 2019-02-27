@@ -6,7 +6,12 @@ pipeline {
         sh 'make init'
       }
     }
-    stage('Brockerstack') {
+    stage('Run Tests') {
+      steps {
+        sh ' cd src && fastlane tests'
+      }
+    }
+    stage('Browserstack') {
       steps {
         sh ' cd src && fastlane po_review'
       }

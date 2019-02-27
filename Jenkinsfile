@@ -15,10 +15,7 @@ pipeline {
         }
         stage('Browserstack') {
           steps {
-            sh '''cd src/ && set -o allexport
-
-&& source /Users/catrobat/Documents/.env
- && set +o allexport && fastlane po_review'''
+            sh 'cd src/ && fastlane po_review'
           }
         }
       }

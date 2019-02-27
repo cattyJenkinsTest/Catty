@@ -7,8 +7,20 @@ pipeline {
       }
     }
     stage('Fastlane Test') {
-      steps {
-        sh 'cd src && fastlane tests'
+      parallel {
+        stage('Fastlane Test') {
+          steps {
+            sh 'cd src && fastlane tests'
+          }
+        }
+        stage('Browserstack') {
+          steps {
+            sh '''cd src/ && set -o allexport
+
+&& source /Users/catrobat/Documents/.env
+ && set +o allexport && fastlane po_review'''
+          }
+        }
       }
     }
     stage('Archive') {
